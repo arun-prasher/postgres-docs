@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>FAQ - Sample Docs</title>
+        <title>FAQ - PostgreSQL Notes</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -24,7 +24,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">Sample Docs</a>
+                <a class="navbar-brand" href="..">PostgreSQL Notes</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -37,29 +37,40 @@
                             <li class="nav-item">
                                 <a href=".." class="nav-link">Home</a>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Getting Started</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../getting-started/" class="dropdown-item">Introduction</a>
-</li>
-                                    
-<li>
-    <a href="../installation/" class="dropdown-item">Installation</a>
-</li>
-                                </ul>
+                            <li class="nav-item">
+                                <a href="../getting-started/" class="nav-link">Getting Started</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../installation/" class="nav-link">Installation</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../user-guide/" class="nav-link">User Guide</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="./" class="nav-link active" aria-current="page">FAQ</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Guides</a>
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Advanced Topics</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../user-guide/" class="dropdown-item">User Guide</a>
+    <a href="../permissions/" class="dropdown-item">Permissions</a>
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active" aria-current="page">FAQ</a>
+    <a href="../schemas/" class="dropdown-item">Schemas</a>
+</li>
+                                    
+<li>
+    <a href="../troubleshooting/" class="dropdown-item">Troubleshooting</a>
+</li>
+                                    
+<li>
+    <a href="../backup/" class="dropdown-item">Backup</a>
+</li>
+                                    
+<li>
+    <a href="../performance/" class="dropdown-item">Performance</a>
 </li>
                                 </ul>
                             </li>
@@ -77,7 +88,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" class="nav-link disabled">
+                                <a rel="next" href="../permissions/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -99,13 +110,21 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="#faq" class="nav-link">FAQ</a>
+            <li class="nav-item" data-bs-level="1"><a href="#postgresql-faq" class="nav-link">PostgreSQL FAQ</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#can-i-add-more-pages" class="nav-link">Can I add more pages?</a>
+            <li class="nav-item" data-bs-level="2"><a href="#why-does-psql-say-database-does-not-exist" class="nav-link">Why does psql say database does not exist?</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#will-it-show-a-left-menu" class="nav-link">Will it show a left menu?</a>
+            <li class="nav-item" data-bs-level="2"><a href="#what-is-the-difference-between-role-and-user-in-postgresql" class="nav-link">What is the difference between role and user in PostgreSQL?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#what-is-the-difference-between-public-and-public" class="nav-link">What is the difference between PUBLIC and public?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#why-am-i-getting-permission-denied-even-after-granting-table-access" class="nav-link">Why am I getting permission denied even after granting table access?</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -116,11 +135,27 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="faq">FAQ</h1>
-<h2 id="can-i-add-more-pages">Can I add more pages?</h2>
-<p>Yes. Add more <code>.md</code> files in the <code>docs/</code> folder and update <code>mkdocs.yml</code>.</p>
-<h2 id="will-it-show-a-left-menu">Will it show a left menu?</h2>
-<p>Yes, when opened through MkDocs, the sidebar appears on the left.</p></div>
+<h1 id="postgresql-faq">PostgreSQL FAQ<a class="headerlink" href="#postgresql-faq" title="Permanent link">&para;</a></h1>
+<h2 id="why-does-psql-say-database-does-not-exist">Why does psql say database does not exist?<a class="headerlink" href="#why-does-psql-say-database-does-not-exist" title="Permanent link">&para;</a></h2>
+<p>If you run:</p>
+<pre><code class="language-bash">psql -h 127.0.0.1 -U tenant_user -p 5432
+</code></pre>
+<p>and do not provide <code>-d</code>, <code>psql</code> tries to connect to a database with the same name as the username.</p>
+<h3 id="fix">Fix<a class="headerlink" href="#fix" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">psql -h 127.0.0.1 -U tenant_user -p 5432 -d postgres
+</code></pre>
+<h2 id="what-is-the-difference-between-role-and-user-in-postgresql">What is the difference between role and user in PostgreSQL?<a class="headerlink" href="#what-is-the-difference-between-role-and-user-in-postgresql" title="Permanent link">&para;</a></h2>
+<p>In PostgreSQL, both are handled using roles. If a role has <code>LOGIN</code>, it can act like a user.</p>
+<h2 id="what-is-the-difference-between-public-and-public">What is the difference between <code>PUBLIC</code> and <code>public</code>?<a class="headerlink" href="#what-is-the-difference-between-public-and-public" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>PUBLIC</code> means all roles</li>
+<li><code>public</code> is the default schema name</li>
+</ul>
+<h2 id="why-am-i-getting-permission-denied-even-after-granting-table-access">Why am I getting permission denied even after granting table access?<a class="headerlink" href="#why-am-i-getting-permission-denied-even-after-granting-table-access" title="Permanent link">&para;</a></h2>
+<p>A user may also need:
+- <code>CONNECT</code> on database
+- <code>USAGE</code> on schema
+- sequence privileges for inserts</p></div>
             </div>
         </div>
 
