@@ -1,0 +1,11 @@
+site_name: Sample Docs
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Introduction: getting-started.md
+      - Installation: installation.md
+  - Guides:
+      - User Guide: user-guide.md
+      - FAQ: faq.md
+theme:
+  name: mkdocs
