@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>User Guide - PostgreSQL Notes</title>
+        <title>Schemas - PostgreSQL Notes</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -44,13 +44,13 @@
                                 <a href="../installation/" class="nav-link">Installation</a>
                             </li>
                             <li class="nav-item">
-                                <a href="./" class="nav-link active" aria-current="page">User Guide</a>
+                                <a href="../user-guide/" class="nav-link">User Guide</a>
                             </li>
                             <li class="nav-item">
                                 <a href="../faq/" class="nav-link">FAQ</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Advanced Topics</a>
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Advanced Topics</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -58,7 +58,7 @@
 </li>
                                     
 <li>
-    <a href="../schemas/" class="dropdown-item">Schemas</a>
+    <a href="./" class="dropdown-item active" aria-current="page">Schemas</a>
 </li>
                                     
 <li>
@@ -83,12 +83,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../installation/" class="nav-link">
+                                <a rel="prev" href="../permissions/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../faq/" class="nav-link">
+                                <a rel="next" href="../troubleshooting/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -110,17 +110,21 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="#postgresql-user-guide" class="nav-link">PostgreSQL User Guide</a>
+            <li class="nav-item" data-bs-level="1"><a href="#postgresql-schemas" class="nav-link">PostgreSQL Schemas</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#connect-to-postgresql" class="nav-link">Connect to PostgreSQL</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#list-databases" class="nav-link">List databases</a>
+            <li class="nav-item" data-bs-level="2"><a href="#why-schemas-matter" class="nav-link">Why schemas matter</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#list-roles" class="nav-link">List roles</a>
+            <li class="nav-item" data-bs-level="2"><a href="#create-a-schema" class="nav-link">Create a schema</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#grant-access-to-a-schema" class="nav-link">Grant access to a schema</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#allow-object-creation-in-a-schema" class="nav-link">Allow object creation in a schema</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -128,35 +132,7 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#list-tables" class="nav-link">List tables</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#create-table" class="nav-link">Create table</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#insert-data" class="nav-link">Insert data</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#read-data" class="nav-link">Read data</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#update-data" class="nav-link">Update data</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#delete-data" class="nav-link">Delete data</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#grant-permissions" class="nav-link">Grant permissions</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#helpful-tips" class="nav-link">Helpful tips</a>
+            <li class="nav-item" data-bs-level="2"><a href="#show-schema-privileges" class="nav-link">Show schema privileges</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -167,60 +143,30 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="postgresql-user-guide">PostgreSQL User Guide<a class="headerlink" href="#postgresql-user-guide" title="Permanent link">&para;</a></h1>
-<p>This page contains common PostgreSQL tasks and commands for daily use.</p>
-<h2 id="connect-to-postgresql">Connect to PostgreSQL<a class="headerlink" href="#connect-to-postgresql" title="Permanent link">&para;</a></h2>
-<pre><code class="language-bash">psql -h 127.0.0.1 -U postgres -d postgres
+<h1 id="postgresql-schemas">PostgreSQL Schemas<a class="headerlink" href="#postgresql-schemas" title="Permanent link">&para;</a></h1>
+<p>A schema is a namespace inside a database. It helps organize database objects like tables, views, functions, and sequences.</p>
+<h2 id="why-schemas-matter">Why schemas matter<a class="headerlink" href="#why-schemas-matter" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Organize objects</li>
+<li>Separate modules</li>
+<li>Support multi-tenant design</li>
+<li>Help with access control</li>
+</ul>
+<h2 id="create-a-schema">Create a schema<a class="headerlink" href="#create-a-schema" title="Permanent link">&para;</a></h2>
+<pre><code class="language-sql">CREATE SCHEMA app;
 </code></pre>
-<h2 id="list-databases">List databases<a class="headerlink" href="#list-databases" title="Permanent link">&para;</a></h2>
-<pre><code class="language-sql">\l
+<h2 id="grant-access-to-a-schema">Grant access to a schema<a class="headerlink" href="#grant-access-to-a-schema" title="Permanent link">&para;</a></h2>
+<pre><code class="language-sql">GRANT USAGE ON SCHEMA app TO tenant_user;
 </code></pre>
-<h2 id="list-roles">List roles<a class="headerlink" href="#list-roles" title="Permanent link">&para;</a></h2>
-<pre><code class="language-sql">\du
+<h2 id="allow-object-creation-in-a-schema">Allow object creation in a schema<a class="headerlink" href="#allow-object-creation-in-a-schema" title="Permanent link">&para;</a></h2>
+<pre><code class="language-sql">GRANT CREATE ON SCHEMA app TO tenant_user;
 </code></pre>
 <h2 id="list-schemas">List schemas<a class="headerlink" href="#list-schemas" title="Permanent link">&para;</a></h2>
 <pre><code class="language-sql">\dn
 </code></pre>
-<h2 id="list-tables">List tables<a class="headerlink" href="#list-tables" title="Permanent link">&para;</a></h2>
-<pre><code class="language-sql">\dt
-</code></pre>
-<h2 id="create-table">Create table<a class="headerlink" href="#create-table" title="Permanent link">&para;</a></h2>
-<pre><code class="language-sql">CREATE TABLE users (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(100),
-    email VARCHAR(255) UNIQUE,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-</code></pre>
-<h2 id="insert-data">Insert data<a class="headerlink" href="#insert-data" title="Permanent link">&para;</a></h2>
-<pre><code class="language-sql">INSERT INTO users (name, email)
-VALUES ('Arun', 'arun@example.com');
-</code></pre>
-<h2 id="read-data">Read data<a class="headerlink" href="#read-data" title="Permanent link">&para;</a></h2>
-<pre><code class="language-sql">SELECT * FROM users;
-</code></pre>
-<h2 id="update-data">Update data<a class="headerlink" href="#update-data" title="Permanent link">&para;</a></h2>
-<pre><code class="language-sql">UPDATE users
-SET name = 'Arun Prasher'
-WHERE id = 1;
-</code></pre>
-<h2 id="delete-data">Delete data<a class="headerlink" href="#delete-data" title="Permanent link">&para;</a></h2>
-<pre><code class="language-sql">DELETE FROM users
-WHERE id = 1;
-</code></pre>
-<h2 id="grant-permissions">Grant permissions<a class="headerlink" href="#grant-permissions" title="Permanent link">&para;</a></h2>
-<pre><code class="language-sql">GRANT CONNECT ON DATABASE mydb TO tenant_user;
-GRANT USAGE ON SCHEMA public TO tenant_user;
-GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO tenant_user;
-GRANT USAGE, SELECT, UPDATE ON ALL SEQUENCES IN SCHEMA public TO tenant_user;
-</code></pre>
-<h2 id="helpful-tips">Helpful tips<a class="headerlink" href="#helpful-tips" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Always specify the database using <code>-d</code></li>
-<li>Use roles instead of sharing one admin account</li>
-<li>Grant only required permissions</li>
-<li>Separate app users from admin users</li>
-</ul></div>
+<h2 id="show-schema-privileges">Show schema privileges<a class="headerlink" href="#show-schema-privileges" title="Permanent link">&para;</a></h2>
+<pre><code class="language-sql">\dn+
+</code></pre></div>
             </div>
         </div>
 

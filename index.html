@@ -4,11 +4,11 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="None">
+        <meta name="description" content="My PostgreSQL learning and documentation">
         
         
         <link rel="shortcut icon" href="img/favicon.ico">
-        <title>Sample Docs</title>
+        <title>PostgreSQL Notes</title>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/fontawesome.min.css" rel="stylesheet">
         <link href="css/brands.min.css" rel="stylesheet">
@@ -24,7 +24,7 @@
     <body class="homepage">
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href=".">Sample Docs</a>
+                <a class="navbar-brand" href=".">PostgreSQL Notes</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -37,29 +37,40 @@
                             <li class="nav-item">
                                 <a href="." class="nav-link active" aria-current="page">Home</a>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Getting Started</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="getting-started/" class="dropdown-item">Introduction</a>
-</li>
-                                    
-<li>
-    <a href="installation/" class="dropdown-item">Installation</a>
-</li>
-                                </ul>
+                            <li class="nav-item">
+                                <a href="getting-started/" class="nav-link">Getting Started</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="installation/" class="nav-link">Installation</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="user-guide/" class="nav-link">User Guide</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="faq/" class="nav-link">FAQ</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Guides</a>
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Advanced Topics</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="user-guide/" class="dropdown-item">User Guide</a>
+    <a href="permissions/" class="dropdown-item">Permissions</a>
 </li>
                                     
 <li>
-    <a href="faq/" class="dropdown-item">FAQ</a>
+    <a href="schemas/" class="dropdown-item">Schemas</a>
+</li>
+                                    
+<li>
+    <a href="troubleshooting/" class="dropdown-item">Troubleshooting</a>
+</li>
+                                    
+<li>
+    <a href="backup/" class="dropdown-item">Backup</a>
+</li>
+                                    
+<li>
+    <a href="performance/" class="dropdown-item">Performance</a>
 </li>
                                 </ul>
                             </li>
@@ -99,9 +110,25 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="#home" class="nav-link">Home</a>
+            <li class="nav-item" data-bs-level="1"><a href="#postgresql-notes" class="nav-link">PostgreSQL Notes</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#sections" class="nav-link">Sections</a>
+            <li class="nav-item" data-bs-level="2"><a href="#what-you-will-find-here" class="nav-link">What you will find here</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#documentation-pages" class="nav-link">Documentation Pages</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#advanced-topics" class="nav-link">Advanced Topics</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#why-this-site" class="nav-link">Why this site</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#postgresql-in-one-line" class="nav-link">PostgreSQL in one line</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -112,16 +139,38 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="home">Home</h1>
-<p>Welcome to the sample documentation site.</p>
-<p>Use the left menu to open different pages.</p>
-<h2 id="sections">Sections</h2>
+<h1 id="postgresql-notes">PostgreSQL Notes<a class="headerlink" href="#postgresql-notes" title="Permanent link">&para;</a></h1>
+<p>Welcome to my PostgreSQL documentation site.</p>
+<p>This site is a growing collection of notes, commands, examples, and explanations related to PostgreSQL. It starts with the basics and will continue to expand with more advanced topics over time.</p>
+<h2 id="what-you-will-find-here">What you will find here<a class="headerlink" href="#what-you-will-find-here" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Getting Started</li>
-<li>Installation</li>
-<li>User Guide</li>
-<li>FAQ</li>
-</ul></div>
+<li>PostgreSQL introduction</li>
+<li>Installation steps</li>
+<li>Getting started with databases and roles</li>
+<li>Common commands</li>
+<li>User guide for daily work</li>
+<li>Frequently asked questions</li>
+<li>Troubleshooting notes</li>
+</ul>
+<h2 id="documentation-pages">Documentation Pages<a class="headerlink" href="#documentation-pages" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="getting-started/">Getting Started</a></li>
+<li><a href="installation/">Installation</a></li>
+<li><a href="user-guide/">User Guide</a></li>
+<li><a href="faq/">FAQ</a></li>
+</ul>
+<h2 id="advanced-topics">Advanced Topics<a class="headerlink" href="#advanced-topics" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="permissions/">Permissions</a></li>
+<li><a href="schemas/">Schemas</a></li>
+<li><a href="troubleshooting/">Troubleshooting</a></li>
+<li><a href="backup/">Backup</a></li>
+<li><a href="performance/">Performance</a></li>
+</ul>
+<h2 id="why-this-site">Why this site<a class="headerlink" href="#why-this-site" title="Permanent link">&para;</a></h2>
+<p>I am creating this site to keep my PostgreSQL learning in one place and update it continuously with practical knowledge, examples, and real-world issues.</p>
+<h2 id="postgresql-in-one-line">PostgreSQL in one line<a class="headerlink" href="#postgresql-in-one-line" title="Permanent link">&para;</a></h2>
+<p>PostgreSQL is a powerful open-source relational database system known for reliability, extensibility, and standards compliance.</p></div>
             </div>
         </div>
 
@@ -203,5 +252,5 @@
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2026-04-20 12:15:57.517694+00:00
+Build Date UTC : 2026-04-20 13:35:39.116470+00:00
 -->

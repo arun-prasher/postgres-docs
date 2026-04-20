@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Introduction - Sample Docs</title>
+        <title>Getting Started - PostgreSQL Notes</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -24,7 +24,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">Sample Docs</a>
+                <a class="navbar-brand" href="..">PostgreSQL Notes</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -37,29 +37,40 @@
                             <li class="nav-item">
                                 <a href=".." class="nav-link">Home</a>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Getting Started</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="./" class="dropdown-item active" aria-current="page">Introduction</a>
-</li>
-                                    
-<li>
-    <a href="../installation/" class="dropdown-item">Installation</a>
-</li>
-                                </ul>
+                            <li class="nav-item">
+                                <a href="./" class="nav-link active" aria-current="page">Getting Started</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../installation/" class="nav-link">Installation</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../user-guide/" class="nav-link">User Guide</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../faq/" class="nav-link">FAQ</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Guides</a>
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Advanced Topics</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../user-guide/" class="dropdown-item">User Guide</a>
+    <a href="../permissions/" class="dropdown-item">Permissions</a>
 </li>
                                     
 <li>
-    <a href="../faq/" class="dropdown-item">FAQ</a>
+    <a href="../schemas/" class="dropdown-item">Schemas</a>
+</li>
+                                    
+<li>
+    <a href="../troubleshooting/" class="dropdown-item">Troubleshooting</a>
+</li>
+                                    
+<li>
+    <a href="../backup/" class="dropdown-item">Backup</a>
+</li>
+                                    
+<li>
+    <a href="../performance/" class="dropdown-item">Performance</a>
 </li>
                                 </ul>
                             </li>
@@ -99,9 +110,33 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="#getting-started" class="nav-link">Getting Started</a>
+            <li class="nav-item" data-bs-level="1"><a href="#getting-started-with-postgresql" class="nav-link">Getting Started with PostgreSQL</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#overview" class="nav-link">Overview</a>
+            <li class="nav-item" data-bs-level="2"><a href="#what-is-postgresql" class="nav-link">What is PostgreSQL?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#basic-terms" class="nav-link">Basic terms</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#first-connection-example" class="nav-link">First connection example</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#first-useful-commands" class="nav-link">First useful commands</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#example-create-a-database" class="nav-link">Example: create a database</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#example-create-a-role" class="nav-link">Example: create a role</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#example-grant-database-access" class="nav-link">Example: grant database access</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -112,10 +147,65 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="getting-started">Getting Started</h1>
-<p>This page helps new users begin.</p>
-<h2 id="overview">Overview</h2>
-<p>This documentation is organized into multiple pages with a left sidebar menu.</p></div>
+<h1 id="getting-started-with-postgresql">Getting Started with PostgreSQL<a class="headerlink" href="#getting-started-with-postgresql" title="Permanent link">&para;</a></h1>
+<h2 id="what-is-postgresql">What is PostgreSQL?<a class="headerlink" href="#what-is-postgresql" title="Permanent link">&para;</a></h2>
+<p>PostgreSQL is an open-source relational database management system (RDBMS). It is used to store, manage, and query structured data.</p>
+<p>It supports:</p>
+<ul>
+<li>SQL</li>
+<li>transactions</li>
+<li>indexes</li>
+<li>views</li>
+<li>functions</li>
+<li>roles and permissions</li>
+<li>JSON data</li>
+<li>extensions</li>
+</ul>
+<h2 id="basic-terms">Basic terms<a class="headerlink" href="#basic-terms" title="Permanent link">&para;</a></h2>
+<h3 id="database">Database<a class="headerlink" href="#database" title="Permanent link">&para;</a></h3>
+<p>A database is a container that holds schemas, tables, views, functions, and other objects.</p>
+<h3 id="table">Table<a class="headerlink" href="#table" title="Permanent link">&para;</a></h3>
+<p>A table stores data in rows and columns.</p>
+<h3 id="row">Row<a class="headerlink" href="#row" title="Permanent link">&para;</a></h3>
+<p>A row is one record in a table.</p>
+<h3 id="column">Column<a class="headerlink" href="#column" title="Permanent link">&para;</a></h3>
+<p>A column defines one field of data.</p>
+<h3 id="role">Role<a class="headerlink" href="#role" title="Permanent link">&para;</a></h3>
+<p>A role is used for login, ownership, and permissions.</p>
+<h3 id="schema">Schema<a class="headerlink" href="#schema" title="Permanent link">&para;</a></h3>
+<p>A schema is a namespace inside a database that groups objects.</p>
+<h2 id="first-connection-example">First connection example<a class="headerlink" href="#first-connection-example" title="Permanent link">&para;</a></h2>
+<pre><code class="language-bash">psql -h 127.0.0.1 -U postgres -d postgres
+</code></pre>
+<h3 id="explanation">Explanation<a class="headerlink" href="#explanation" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>-h</code> = host</li>
+<li><code>-U</code> = username</li>
+<li><code>-d</code> = database name</li>
+</ul>
+<p>If <code>-d</code> is not provided, <code>psql</code> tries to connect to a database with the same name as the user.</p>
+<h2 id="first-useful-commands">First useful commands<a class="headerlink" href="#first-useful-commands" title="Permanent link">&para;</a></h2>
+<p>Inside <code>psql</code>:</p>
+<pre><code class="language-sql">\l
+\du
+\dn
+\dt
+</code></pre>
+<ul>
+<li><code>\l</code> = list databases</li>
+<li><code>\du</code> = list roles</li>
+<li><code>\dn</code> = list schemas</li>
+<li><code>\dt</code> = list tables</li>
+</ul>
+<h2 id="example-create-a-database">Example: create a database<a class="headerlink" href="#example-create-a-database" title="Permanent link">&para;</a></h2>
+<pre><code class="language-sql">CREATE DATABASE myapp;
+</code></pre>
+<h2 id="example-create-a-role">Example: create a role<a class="headerlink" href="#example-create-a-role" title="Permanent link">&para;</a></h2>
+<pre><code class="language-sql">CREATE ROLE myuser WITH LOGIN PASSWORD 'mypassword';
+</code></pre>
+<h2 id="example-grant-database-access">Example: grant database access<a class="headerlink" href="#example-grant-database-access" title="Permanent link">&para;</a></h2>
+<pre><code class="language-sql">GRANT CONNECT ON DATABASE myapp TO myuser;
+</code></pre></div>
             </div>
         </div>
 

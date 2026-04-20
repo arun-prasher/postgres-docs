@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Installation - Sample Docs</title>
+        <title>Installation - PostgreSQL Notes</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -24,7 +24,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">Sample Docs</a>
+                <a class="navbar-brand" href="..">PostgreSQL Notes</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -37,29 +37,40 @@
                             <li class="nav-item">
                                 <a href=".." class="nav-link">Home</a>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Getting Started</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../getting-started/" class="dropdown-item">Introduction</a>
-</li>
-                                    
-<li>
-    <a href="./" class="dropdown-item active" aria-current="page">Installation</a>
-</li>
-                                </ul>
+                            <li class="nav-item">
+                                <a href="../getting-started/" class="nav-link">Getting Started</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="./" class="nav-link active" aria-current="page">Installation</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../user-guide/" class="nav-link">User Guide</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../faq/" class="nav-link">FAQ</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Guides</a>
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Advanced Topics</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../user-guide/" class="dropdown-item">User Guide</a>
+    <a href="../permissions/" class="dropdown-item">Permissions</a>
 </li>
                                     
 <li>
-    <a href="../faq/" class="dropdown-item">FAQ</a>
+    <a href="../schemas/" class="dropdown-item">Schemas</a>
+</li>
+                                    
+<li>
+    <a href="../troubleshooting/" class="dropdown-item">Troubleshooting</a>
+</li>
+                                    
+<li>
+    <a href="../backup/" class="dropdown-item">Backup</a>
+</li>
+                                    
+<li>
+    <a href="../performance/" class="dropdown-item">Performance</a>
 </li>
                                 </ul>
                             </li>
@@ -99,9 +110,45 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="#installation" class="nav-link">Installation</a>
+            <li class="nav-item" data-bs-level="1"><a href="#postgresql-installation" class="nav-link">PostgreSQL Installation</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#example" class="nav-link">Example</a>
+            <li class="nav-item" data-bs-level="2"><a href="#install-on-ubuntu" class="nav-link">Install on Ubuntu</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#check-service-status" class="nav-link">Check service status</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#start-postgresql" class="nav-link">Start PostgreSQL</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#enable-postgresql-on-boot" class="nav-link">Enable PostgreSQL on boot</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#switch-to-postgres-user" class="nav-link">Switch to postgres user</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#check-postgresql-version" class="nav-link">Check PostgreSQL version</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#default-port" class="nav-link">Default port</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#connect-to-a-database" class="nav-link">Connect to a database</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#common-installation-checks" class="nav-link">Common installation checks</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#common-issues-after-installation" class="nav-link">Common issues after installation</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -112,16 +159,41 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="installation">Installation</h1>
-<p>Follow these steps:</p>
-<ol>
-<li>Install the required tools.</li>
-<li>Start the documentation server.</li>
-<li>Open the site in your browser.</li>
-</ol>
-<h2 id="example">Example</h2>
-<pre><code class="language-bash">mkdocs serve
-</code></pre></div>
+<h1 id="postgresql-installation">PostgreSQL Installation<a class="headerlink" href="#postgresql-installation" title="Permanent link">&para;</a></h1>
+<p>This page covers the basic installation process for PostgreSQL.</p>
+<h2 id="install-on-ubuntu">Install on Ubuntu<a class="headerlink" href="#install-on-ubuntu" title="Permanent link">&para;</a></h2>
+<pre><code class="language-bash">sudo apt update
+sudo apt install postgresql postgresql-contrib
+</code></pre>
+<h2 id="check-service-status">Check service status<a class="headerlink" href="#check-service-status" title="Permanent link">&para;</a></h2>
+<pre><code class="language-bash">sudo systemctl status postgresql
+</code></pre>
+<h2 id="start-postgresql">Start PostgreSQL<a class="headerlink" href="#start-postgresql" title="Permanent link">&para;</a></h2>
+<pre><code class="language-bash">sudo systemctl start postgresql
+</code></pre>
+<h2 id="enable-postgresql-on-boot">Enable PostgreSQL on boot<a class="headerlink" href="#enable-postgresql-on-boot" title="Permanent link">&para;</a></h2>
+<pre><code class="language-bash">sudo systemctl enable postgresql
+</code></pre>
+<h2 id="switch-to-postgres-user">Switch to postgres user<a class="headerlink" href="#switch-to-postgres-user" title="Permanent link">&para;</a></h2>
+<pre><code class="language-bash">sudo -u postgres psql
+</code></pre>
+<h2 id="check-postgresql-version">Check PostgreSQL version<a class="headerlink" href="#check-postgresql-version" title="Permanent link">&para;</a></h2>
+<pre><code class="language-bash">psql --version
+</code></pre>
+<h2 id="default-port">Default port<a class="headerlink" href="#default-port" title="Permanent link">&para;</a></h2>
+<p>PostgreSQL usually runs on port <code>5432</code>.</p>
+<h2 id="connect-to-a-database">Connect to a database<a class="headerlink" href="#connect-to-a-database" title="Permanent link">&para;</a></h2>
+<pre><code class="language-bash">psql -h 127.0.0.1 -U myuser -d mydb
+</code></pre>
+<h2 id="common-installation-checks">Common installation checks<a class="headerlink" href="#common-installation-checks" title="Permanent link">&para;</a></h2>
+<pre><code class="language-bash">ss -ltnp | grep 5432
+</code></pre>
+<h2 id="common-issues-after-installation">Common issues after installation<a class="headerlink" href="#common-issues-after-installation" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Connection refused</li>
+<li>Password authentication failed</li>
+<li>Database does not exist</li>
+</ul></div>
             </div>
         </div>
 
